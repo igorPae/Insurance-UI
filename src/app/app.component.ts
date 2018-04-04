@@ -11,26 +11,35 @@ import * as alasql from 'alasql';
 export class AppComponent implements OnInit {
   title = 'app';
   res;
-  test = 'dsfhgsdfgsdfgsdf';
+  gender;
+  age;
+  active = false;
+
+  levelNum:number;
+  levels:Array<Object> = [
+      {num: 0, name: "AA"},
+      {num: 1, name: "BB"}
+  ];
+
+  toNumber(){
+    this.levelNum = +this.levelNum;
+    console.log(this.levelNum);
+  }
+
 
 
   ngOnInit() {
 
     alasql('CREATE table one; SELECT * INTO one FROM JSON("../assets/json/data.json")');
 
-    // setTimeout(() => {
-    //   this.res = alasql('SELECT * FROM one WHERE gender = "male" AND isActive = true');
-    //   console.log(this.res);
-    //   console.log('done');
-    // }, 10000);
-
   }
 
   showTest() {
-    this.res = alasql('SELECT * FROM one WHERE gender = "' + this.test + '" AND isActive = true');
-    setTimeout(() => {
-      console.log(this.res);
-    }, 10000);
-  }
-
+this.age =  parseInt(this.age);
+console.log(typeof this.age);
+    this.res = alasql('SELECT * FROM one WHERE gender = "'+this.gender+'" AND age = '+this.age+ ' AND isActive = '+this.active );
+      setTimeout(() => {
+        console.log(this.res);
+      }, 10000);
+    }
 }

@@ -1,33 +1,42 @@
 <form action="">
-	<input  type="text" id="text1" name="name" [(ngModel)]="test">
-	<input  type="text" id="text" name="name">
-	<input type="checkbox" id="checkbox1" name="a" value=" "  >
+	<input  type="text" id="text1" name="gender" [(ngModel)]="gender">
+	<input  type="number" id="text" name="age" [(ngModel)]="age">
+	<input type="checkbox" id="checkbox1" name="true" value="true "   >
 	<input type="checkbox" id="checkbox2" name="a" value=" "  >
 
   <div>
-	<input type="radio" id="button1" value="email" name="choose">
+	<input type="radio"[checked]="active" (change)="active =!active" id="button1" value="email" name="choose">
   <input type="radio" id="button2" value="phone" name="choose">
   </div>
-
-	<select name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
+<div class="">
+	{{test2}}
+</div>
+	<select name="cars" >
+    <option value="volvo"  >female</option>
+    <option value="saab" >female</option>
     <option value="fiat">Fiat</option>
     <option value="audi">Audi</option>
   </select>
   <br><br>
 
+   <select type="number" [(ngModel)]="levelNum" (ngModelChange)="toNumber()">
+      <option *ngFor="let level of levels" [ngValue]="level.num">{{level.name}}</option>
+    </select>
+    {{levelNum}}
+
 
 	<select name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
+    <option [value]=num [id]="'igor' + i" *ngFor="let num of ['a', 'b', 'c','d']; index as i">{{num}}</option>
+
   </select>
   <br><br>
   <button type="submit" (click)="showTest()">Send</button>
 </form>
 <ul>
-  <li *ngFor="let x of res">{{x.name}} + Eye color:{{x.eyeColor}}</li>
-</ul>
+  <li *ngFor="let x of res">{{x.name}} , Eye color:{{x.eyeColor}}
+		<div *ngFor="let y of x.tags">{{y}}</div>
+	</li>
+	<li *ngFor="let x of res">{{x.age}} {{x.gender}}
+		</li>
 
+</ul>
